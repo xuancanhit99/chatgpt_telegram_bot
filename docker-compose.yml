@@ -3,12 +3,12 @@ version: "3"
 services:
   mongo:
     container_name: mongo
-    image: mongo:latest
+    image: mongo:4.4.6
     restart: always
     ports:
       - ${MONGODB_PORT:-27017}:${MONGODB_PORT:-27017}
     volumes:
-      - ${MONGODB_PATH:-./mongodb}:/data/db
+      - ${MONGODB_PATH:-./data/db}:/data/db
 
   chatgpt_telegram_bot:
     container_name: chatgpt_telegram_bot
