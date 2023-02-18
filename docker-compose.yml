@@ -4,17 +4,16 @@ services:
   mongo:
     container_name: mongo
     image: mongo:latest
-    restart: unless-stopped
+    restart: always
     ports:
       - ${MONGODB_PORT:-27017}:${MONGODB_PORT:-27017}
     volumes:
       - ${MONGODB_PATH:-./mongodb}:/data/db
-    # TODO: add auth
 
   chatgpt_telegram_bot:
     container_name: chatgpt_telegram_bot
     command: python3 bot/bot.py
-    restart: unless-stopped
+    restart: always
     build:
       context: "."
       dockerfile: Dockerfile
@@ -24,7 +23,7 @@ services:
   mongo_express:
     container_name: mongo-express
     image: mongo-express:latest
-    restart: unless-stopped
+    restart: always
     ports:
       - ${MONGO_EXPRESS_PORT:-8081}:${MONGO_EXPRESS_PORT:-8081}
     environment:
